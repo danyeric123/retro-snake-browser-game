@@ -20,7 +20,7 @@
 2. Game field will be a grid of cells
    1. Food cells will be red
    2. Cells that the snake occupies will be green
-   3. Empty cells will be black
+   3. Empty cells will be grey
    4. It will be a grid of divs
       1. Traversing the grid would work like a 2D array
       2. Each div has class cell

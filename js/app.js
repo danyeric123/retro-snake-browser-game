@@ -2,11 +2,11 @@ import Snake from './snake.js';
 import Food from './food.js';
 
 /*-------------------------------- Constants --------------------------------*/
-const UP = { x: 0, y:-1 }
-const DOWN = { x: 0, y: 1 }
-const RIGHT  = { x: 1, y: 0 }
-const LEFT  = { x:-1, y: 0 }
-const DIR = [UP,DOWN,RIGHT,LEFT]
+const UP = { x: 0, y:-1 },
+      DOWN = { x: 0, y: 1 },
+      RIGHT  = { x: 1, y: 0 },
+      LEFT  = { x:-1, y: 0 },
+      DIR = [UP,DOWN,RIGHT,LEFT]
 
 const boardSize = 32
 
@@ -17,8 +17,9 @@ const DOWN_KEY = 40;
 // Should I make an array of objects that maps the keys with directions?
 
 let keyPressed,
-    randomPosition,
+    randomPosition =randomPosition(),
     randomDirection,
+    foodPosition,
     snake = new Snake({x:10,y:10},2)
 
 /*------------------------ Cached Element References ------------------------*/
@@ -33,13 +34,15 @@ window.addEventListener("keydown",userInput)
 init()
 
 function init(){
-  randomPosition = {
-    x: Math.floor(Math.random()*boardSize),
-    y: Math.floor(Math.random()*boardSize)
-  }
   randomDirection = DIR[Math.floor(Math.random()*DIR.length)]
-  snake = new Snake(randomPosition,randomDirection)
+  snake = new Snake(randomPosition(),randomDirection)
   board.forEach(row=>row.forEach(cell=>cell.className="cell"))
+  while(snake.positions.includes(foodPosition)){
+    foodPosition=randomPosition()
+  }
+  board[foodPosition.y][foodPosition.x].className = "food"
+//Here be game while loop
+
 }
 
 let interval = setInterval(()=>{
@@ -84,6 +87,14 @@ function userInput(e){
       break;
   }
 
+}
+
+
+function randomPosition(){
+  return randomPosition = {
+    x: Math.floor(Math.random()*boardSize),
+    y: Math.floor(Math.random()*boardSize)
+  }
 }
 
 //Refactor the code for checking whether lastInputDir is non-zero
