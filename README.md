@@ -1,4 +1,4 @@
-#PSEUDO-CODE:
+# PSEUDO-CODE:
 1. Snake will be an object/class with the following states:
    1. Length of snake
    2. Snake speed variable?
