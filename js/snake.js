@@ -15,11 +15,23 @@ export default class Snake{
     this.positions.unshift(head);
     this.positions.pop()
   }
+
+  get getHead(){
+    return this.positions[0]
+  }
+
   turn(turnDirection){
-    let head = {
+    let newHead = {
       x: this.positions[0].x + turnDirection.x, 
       y: this.positions[0].y + turnDirection.y
     };
+    if(this.positions.includes(newHead)){
+      this.isDead =true
+    }else{
+      this.positions.unshift(head);
+      this.positions.pop()
+    }
+    this.direction = turnDirection
   }
   eat(){
     let oldTail = this.positions[this.positions.length-1]
