@@ -1,0 +1,43 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+canvas{
+  color: black;
+}
+
+#game-board {
+  background-color: #CCC;
+  border: black solid;
+  width: 100vmin;
+  height: 74vmin;
+  display: grid;
+}
+
+#title{
+  margin-bottom: 10px;
+  padding: 5px;
+  font-size: 40px;
+  border: solid black;
+}
+
+.cell{
+  border: .1em solid rgba(0, 0, 0, 0.6);
+  padding: .5px;
+}
+
+.snake {
+  background-color: hsl(128, 100%, 50%);
+  border: 1px solid black;
+}
+
+.food {
+  background-color: hsl(0, 100%, 50%);
+  border: .25vmin solid black;
+}
