@@ -26,7 +26,7 @@ let gameBoardSection = document.getElementById("game-board")
 const board = createGameBoard(gameBoardSection, boardSize)
 
 /*----------------------------- Event Listeners -----------------------------*/
-
+window.addEventListener("keydown",userInput)
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -59,21 +59,35 @@ function renderSnakeMove(delta){
   }
 }
 
+
+function userInput(e){
+  switch(e.code) {
+    case "KeyS":
+    case "ArrowDown":
+      // Handle "down"
+      snake.turn(DOWN);
+      break;
+    case "KeyW":
+    case "ArrowUp":
+      // Handle "up"
+      snake.turn(UP);
+      break;
+    case "KeyA":
+    case "ArrowLeft":
+      // Handle "turn left"
+      snake.turn(LEFT);
+      break;
+    case "KeyD":
+    case "ArrowRight":
+      // Handle "turn right"
+      snake.turn(RIGHT);
+      break;
+  }
+
+}
+
 //Refactor the code for checking whether lastInputDir is non-zero
-// switch (keyPressed) {
-//   case UP_KEY:
-//     inputDirection = UP
-//     break
-//   case DOWN_KEY:
-//     inputDirection = DOWN
-//     break
-//   case LEFT_KEY:
-//     inputDirection = LEFT
-//     break
-//   case RIGHT_KEY:
-//     inputDirection = RIGHT
-//     break
-// }
+
 
 
 function createGameBoard(gameBoardSection,size){

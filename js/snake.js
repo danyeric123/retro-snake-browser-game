@@ -7,10 +7,10 @@ export default class Snake{
     this.isDead = false
     this.direction = direction
   }
-  move(){
+  move(delta=this.direction){
     let head = {
-      x: this.positions[0].x + this.direction.x, 
-      y: this.positions[0].y + this.direction.y
+      x: this.positions[0].x + delta.x, 
+      y: this.positions[0].y + delta.y
     };
     this.positions.unshift(head);
     this.positions.pop()
@@ -41,3 +41,8 @@ export default class Snake{
 
   }
 }
+
+// addSegments() {
+//   for (let i = 0; i < newSegments; i++) {
+//     snakeBody.push({ ...snakeBody[snakeBody.length - 1] })
+//   }
