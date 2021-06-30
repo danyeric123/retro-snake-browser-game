@@ -6,6 +6,7 @@ const UP = { x: 0, y:-1 }
 const DOWN = { x: 0, y: 1 }
 const RIGHT  = { x: 1, y: 0 }
 const LEFT  = { x:-1, y: 0 }
+const DIR = [UP,DOWN,RIGHT,LEFT]
 
 const boardSize = 32
 
@@ -15,7 +16,9 @@ const UP_KEY = 38;
 const DOWN_KEY = 40;
 // Should I make an array of objects that maps the keys with directions?
 
-let keyPressed, 
+let keyPressed,
+    randomPosition,
+    randomDirection,
     snake = new Snake({x:10,y:10},2)
 
 /*------------------------ Cached Element References ------------------------*/
@@ -30,10 +33,13 @@ const board = createGameBoard(gameBoardSection, boardSize)
 init()
 
 function init(){
-  let randomPosition = {
-    x: Math.random()*boardSize,
-    y: Math.random()*boardSize
+  randomPosition = {
+    x: Math.floor(Math.random()*boardSize),
+    y: Math.floor(Math.random()*boardSize)
   }
+  randomDirection = DIR[Math.floor(Math.random()*DIR.length)]
+  snake = new Snake(randomPosition,randomDirection)
+  board.forEach(row=>row.forEach(cell=>cell.className="cell"))
 }
 
 let interval = setInterval(()=>{
