@@ -90,14 +90,12 @@ function renderFood(){
   console.log(food.isEaten)
   if(food.isEaten){
     board[foodPosition.y][foodPosition.x].className = "cell"
-    foodPlacement()
-    board[foodPosition.y][foodPosition.x].className = "food"
     food.toggleEaten()
-    //Think of refactoring the food position into Food class
-  }else if(!foodPosition){
-    foodPlacement()
-    board[foodPosition.y][foodPosition.x].className = "food"
   }
+  foodPlacement()
+  board[foodPosition.y][foodPosition.x].className = "food"
+
+    //Think of refactoring the food position into Food class
 }
 
 function renderSnake(){
