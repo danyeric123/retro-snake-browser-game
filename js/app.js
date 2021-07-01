@@ -127,10 +127,11 @@ function userInput(e){
 
 
 function getRandomPosition(){
-  return randomPosition = {
+  randomPosition = {
     x: Math.floor(Math.random()*boardSize),
     y: Math.floor(Math.random()*boardSize)
   }
+  return randomPosition
 }
 
 //Refactor the code for checking whether lastInputDir is non-zero
