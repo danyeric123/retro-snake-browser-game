@@ -1,7 +1,7 @@
 import Snake from './snake.js';
 import Food from './food.js';
 
-/*-------------------------------- Constants --------------------------------*/
+/*-------------------------------- Constants / Variables --------------------------------*/
 const UP = { x: 0, y:-1 },
       DOWN = { x: 0, y: 1 },
       RIGHT  = { x: 1, y: 0 },
@@ -42,10 +42,15 @@ function init(){
   board.forEach(row=>row.forEach(cell=>cell.className="cell"))
   //Here be game while loop
   while(snake.isDead){
+    snake.move()
+    if(withinBounds(snake.positions[0])){
 
+    }else{
+      snake.toggleIsDead()
+    }
+    render()
   }
-  renderEndGame()
-  instructions.innerText="You Died! Press Space Bar to Play Again"
+  
 }
 
 let interval = setInterval(()=>{
@@ -58,9 +63,16 @@ let interval = setInterval(()=>{
   }
 },1000/snake.speed)
 
+
+/* ------------------------- RENDER FUNCTIONS ------------------------------------- */
+
 function render(){
-  renderSnake()
-  renderFood()
+  if(!snake.isDead){
+    renderSnake()
+    renderFood()
+  }else{
+    renderEndGame()
+  }
 }
 
 function renderFood(){
@@ -80,20 +92,10 @@ function renderSnake(){
 }
 
 function renderEndGame(){
-  
+  instructions.innerText="You Died! Press Space Bar to Play Again"
 }
 
-function updateScore(){
-  score = (snake.size-1)
-}
-
-function foodPlacement(){
-  while(snake.positions.includes(foodPosition)){
-    foodPosition=getRandomPosition()
-  }
-  board[foodPosition.y][foodPosition.x].className = "food"
-}
-
+/* ------------------ EVENT LISTENER FUNCTIONS ----------------------------------- */
 
 function userInput(e){
   switch(e.code) {
@@ -124,12 +126,30 @@ function userInput(e){
 
 }
 
+/*------------------------- HELPER FUNCTIONS  ------------------------------------------------*/
+
 
 function getRandomPosition(){
   return {
     x: Math.floor(Math.random()*boardSize),
     y: Math.floor(Math.random()*boardSize)
   }
+}
+
+function updateScore(){
+  score = (snake.size-1)
+}
+
+function withinBounds(position){
+  return (position.y>-1 && position.y < boardSize)&&
+         (position.x>-1 && position.x < boardSize)
+}
+
+function foodPlacement(){
+  while(snake.positions.includes(foodPosition)){
+    foodPosition=getRandomPosition()
+  }
+  board[foodPosition.y][foodPosition.x].className = "food"
 }
 
 //Refactor the code for checking whether lastInputDir is non-zero
