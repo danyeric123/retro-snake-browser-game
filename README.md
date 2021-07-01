@@ -1,3 +1,7 @@
+# Game Link
+[Click here to play game](https://danyeric123.github.io/retro-snake-browser-game/)
+
+
 # PSEUDO-CODE:
 1. Snake will be an object/class with the following states:
    1. Length of snake
