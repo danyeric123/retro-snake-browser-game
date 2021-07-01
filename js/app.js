@@ -16,9 +16,9 @@ const UP_KEY = 38;
 const DOWN_KEY = 40;
 // Should I make an array of objects that maps the keys with directions?
 
-let keyPressed,
+let keyPress,
     score,
-    food = new Food(),
+    food,
     randomDirection,
     foodPosition,
     snake,
@@ -41,48 +41,46 @@ function init(){
   randomDirection = DIR[Math.floor(Math.random()*DIR.length)]
   console.log("before initialization")
   snake = new Snake(getRandomPosition(),randomDirection)
+  food = new Food()
   board.forEach(row=>row.forEach(cell=>cell.className="cell"))
   renderFood()
   //Here be game while loop
-
   let interval = setInterval(()=>{
-    snake.move()
-    snakeHead = snake.getHead
-    if(withinBounds(snakeHead)){
-        if(snakeHead.x === foodPosition.x && 
-          snakeHead.x === foodPosition.y){
-            snake.eat()
-            food.toggleEaten()
-            console.log("eaten")
-          }
-      }else{
-        snake.toggleIsDead()
-      }
-      if(snake.isDead){
-        clearInterval(interval)
-      }
-      render()
-    },1000/snake.speed)
-  
+    updateState()
+    if(snake.isDead){
+      clearInterval(interval)
+    }
+    render()
+  },500/snake.speed)
 }
 
-// let interval = setInterval(()=>{
-//   if(snake.positions[0].y!=0){
-//     snake.move(UP)
-//     renderSnakeMove(UP)
-//   }else{
-//     alert("You Died!")
-//     clearInterval(interval)
-//   }
-// },1000/snake.speed)
-
+function updateState(){
+  !keyPress?snake.move():snake.move(keyPress)
+  snakeHead = snake.getHead
+  if(withinBounds(snakeHead)){
+      // console.log(`snake position: ${JSON.stringify(snake.positions)}`)
+      // console.log(`food position: ${JSON.stringify(foodPosition)}`)
+      // console.log((snakeHead.x == foodPosition.x) && 
+      //   (snakeHead.y == foodPosition.y))
+      
+      // console.log("\n")
+      if((snakeHead.x == foodPosition.x) && 
+        (snakeHead.y == foodPosition.y)){
+          snake.eat()
+          food.toggleEaten()
+          console.log("eaten")
+        }
+    }else{
+      snake.toggleIsDead()
+    }
+}
 
 /* ------------------------- RENDER FUNCTIONS ------------------------------------- */
 
 function render(){
+  if(food.isEaten) renderFood()
   if(!snake.isDead){
     renderSnake()
-    renderFood()
   }else{
     renderEndGame()
   }
@@ -92,6 +90,10 @@ function renderFood(){
   console.log(food.isEaten)
   if(food.isEaten){
     board[foodPosition.y][foodPosition.x].className = "cell"
+    foodPlacement()
+    board[foodPosition.y][foodPosition.x].className = "food"
+    food.toggleEaten()
+    //Think of refactoring the food position into Food class
   }else if(!foodPosition){
     foodPlacement()
     board[foodPosition.y][foodPosition.x].className = "food"
@@ -117,28 +119,27 @@ function userInput(e){
     case "KeyS":
     case "ArrowDown":
       // Handle "down"
-      snake.turn(DOWN);
+      keyPress = DOWN
       break;
     case "KeyW":
     case "ArrowUp":
       // Handle "up"
-      snake.turn(UP);
+      keyPress = UP;
       break;
     case "KeyA":
     case "ArrowLeft":
       // Handle "turn left"
-      snake.turn(LEFT);
+      keyPress = LEFT;
       break;
     case "KeyD":
     case "ArrowRight":
       // Handle "turn right"
-      snake.turn(RIGHT);
+      keyPress = RIGHT;
       break;
     case "Space":
       init();
       break;
   }
-
 }
 
 /*------------------------- HELPER FUNCTIONS  ------------------------------------------------*/
