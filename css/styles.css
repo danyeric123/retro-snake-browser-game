@@ -32,6 +32,19 @@ canvas{
   padding: .5px;
 }
 
+#score-board{
+  color: rgb(190, 50, 50);
+  border-radius: 60%;
+  padding: 15px;
+  margin-top: 0px;
+  border: solid rgba(0, 0, 0, 0.6);
+  display: none;
+}
+
+#instructions{
+  /* border:rgba(0, 0, 0, 0.6) solid; */
+}
+
 .snake {
   background-color: hsl(128, 100%, 50%);
   border: 1px solid black;

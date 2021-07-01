@@ -12,16 +12,20 @@ export default class Snake{
       x: this.getHead.x + delta.x, 
       y: this.getHead.y + delta.y
     };
-    console.log(newHead)
-    console.log(this.getHead)
-    console.log(this.positions.includes(newHead))
-    console.log("\n")
-    if(this.positions.includes(newHead)){
+    if(this.touchSelf(newHead)){
+      console.log("Snake dead")
       this.isDead =true
+      console.log(`isDead is set to ${this.isDead}`)
     }else{
       this.positions.unshift(newHead);
       this.positions.pop()
     }
+  }
+
+  touchSelf(newPosition){
+    return this.positions.some(position=>
+      (position.x === newPosition.x)&&
+      (position.y === newPosition.y))
   }
 
   size(){

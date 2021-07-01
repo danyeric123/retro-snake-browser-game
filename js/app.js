@@ -23,11 +23,13 @@ let keyPress,
     randomDirection,
     foodPosition,
     snake,
+    gamePlay,
     snakeHead
 
 /*------------------------ Cached Element References ------------------------*/
 let gameBoardSection = document.getElementById("game-board")
 const board = createGameBoard(gameBoardSection, boardSize),
+      scoreEl = document.getElementById("score-board"),
       instructions = document.getElementById("instructions")
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -37,18 +39,21 @@ window.addEventListener("keydown",userInput)
 
 
 function init(){
-  instructions.innerText = ""
+  instructions.innerText = "Press Q to quit"
   score = 0
+  scoreEl.innerText=`Score: ${score}`
+  scoreEl.style.display = "block"
   randomDirection = DIR[Math.floor(Math.random()*DIR.length)]
   snake = new Snake(getRandomPosition(),randomDirection)
   food = new Food()
   board.forEach(row=>row.forEach(cell=>cell.className="cell"))
   renderFood()
   //Here be game while loop
-  let interval = setInterval(()=>{
+  gamePlay = setInterval(()=>{
     updateState()
+    console.log(`Game claims isDead is ${snake.isDead}`)
     if(snake.isDead){
-      clearInterval(interval)
+      clearInterval(gamePlay)
     }
     render()
   },500/snake.speed)
@@ -58,12 +63,6 @@ function updateState(){
   !keyPress?snake.move():snake.move(keyPress)
   snakeHead = snake.getHead
   if(withinBounds(snakeHead)&&!snake.isDead){
-      // console.log(`snake position: ${JSON.stringify(snake.positions)}`)
-      // console.log(`food position: ${JSON.stringify(foodPosition)}`)
-      // console.log((snakeHead.x == foodPosition.x) && 
-      //   (snakeHead.y == foodPosition.y))
-      
-      // console.log("\n")
       if((snakeHead.x == foodPosition.x) && 
         (snakeHead.y == foodPosition.y)){
           snake.eat()
@@ -71,7 +70,7 @@ function updateState(){
           console.log("eaten")
         }
     }else{
-      snake.toggleIsDead()
+      if(!snake.isDead) snake.toggleIsDead()
     }
 }
 
@@ -79,7 +78,7 @@ function updateState(){
 
 function render(){
   if(food.isEaten) renderFood()
-  if((score/scoreFactor)!=snake.size()) renderScore()
+  if((score/scoreFactor)!=(snake.size()-1)) renderScore()
   if(!snake.isDead){
     renderSnake()
   }else{
@@ -108,7 +107,7 @@ function renderSnake(){
 
 function renderScore(){
   updateScore()
-  instructions.innerText=`Score: ${score}`
+  scoreEl.innerText=`Score: ${score}`
 }
 
 function renderEndGame(){
@@ -142,6 +141,8 @@ function userInput(e){
     case "Space":
       init();
       break;
+    case "KeyQ":
+      clearInterval(gamePlay)
   }
 }
 
@@ -156,7 +157,7 @@ function getRandomPosition(){
 }
 
 function updateScore(){
-  score = (snake.size()*scoreFactor)
+  score = ((snake.size()-1)*scoreFactor)
 }
 
 function withinBounds(position){
