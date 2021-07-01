@@ -38,14 +38,15 @@ export default class Snake{
     }else{
       this.positions.unshift(head);
       this.positions.pop()
+      this.direction = turnDirection
     }
-    this.direction = turnDirection
   }
   eat(){
-    let oldTail = this.positions[this.positions.length-1]
+    let oldTail = {...this.positions[this.positions.length-1]}
     this.positions.push(oldTail)
 
     // Grow factor from food can be implemented later once MVP is set up
+    // Grow factor can be done as follows: Array(growFactor).fill(oldTail)
 
   }
 }

@@ -17,7 +17,7 @@ const DOWN_KEY = 40;
 // Should I make an array of objects that maps the keys with directions?
 
 let keyPressed,
-    randomPosition =randomPosition(),
+    randomPosition =getRandomPosition(),
     score,
     food = new Food(),
     randomDirection,
@@ -39,7 +39,7 @@ function init(){
   instructions.innerText = ""
   score = 0
   randomDirection = DIR[Math.floor(Math.random()*DIR.length)]
-  snake = new Snake(randomPosition(),randomDirection)
+  snake = new Snake(getRandomPosition(),randomDirection)
   board.forEach(row=>row.forEach(cell=>cell.className="cell"))
   //Here be game while loop
   while(snake.isDead){
@@ -90,7 +90,7 @@ function updateScore(){
 
 function foodPlacement(){
   while(snake.positions.includes(foodPosition)){
-    foodPosition=randomPosition()
+    foodPosition=getRandomPosition()
   }
   board[foodPosition.y][foodPosition.x].className = "food"
 }
@@ -126,7 +126,7 @@ function userInput(e){
 }
 
 
-function randomPosition(){
+function getRandomPosition(){
   return randomPosition = {
     x: Math.floor(Math.random()*boardSize),
     y: Math.floor(Math.random()*boardSize)
