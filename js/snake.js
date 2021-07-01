@@ -8,39 +8,38 @@ export default class Snake{
     this.direction = direction
   }
   move(delta=this.direction){
-    let head = {
-      x: this.positions[0].x + delta.x, 
-      y: this.positions[0].y + delta.y
+    let newHead = {
+      x: this.getHead.x + delta.x, 
+      y: this.getHead.y + delta.y
     };
-    this.positions.unshift(head);
-    this.positions.pop()
+    if(this.touchSelf(newHead)){
+      console.log("Snake dead")
+      this.isDead =true
+      console.log(`isDead is set to ${this.isDead}`)
+    }else{
+      this.positions.unshift(newHead);
+      this.positions.pop()
+    }
+  }
+
+  touchSelf(newPosition){
+    return this.positions.some(position=>
+      (position.x === newPosition.x)&&
+      (position.y === newPosition.y))
+  }
+
+  size(){
+    return this.positions.length
   }
 
   get getHead(){
     return this.positions[0]
   }
 
-  get isDead(){
-    return this.isDead
-  }
-
   toggleIsDead(){
     this.isDead = !this.isDead
   }
 
-  turn(turnDirection){
-    let newHead = {
-      x: this.positions[0].x + turnDirection.x, 
-      y: this.positions[0].y + turnDirection.y
-    };
-    if(this.positions.includes(newHead)){
-      this.isDead =true
-    }else{
-      this.positions.unshift(head);
-      this.positions.pop()
-      this.direction = turnDirection
-    }
-  }
   eat(){
     let oldTail = {...this.positions[this.positions.length-1]}
     this.positions.push(oldTail)

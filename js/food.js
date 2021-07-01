@@ -1,15 +1,11 @@
 export default class Food{
   constructor(growFactor=1){
     this.growFactor = growFactor
-    this.eaten= false
-  }
-
-  get isEaten(){
-    return this.eaten
+    this.isEaten= false
   }
 
   toggleEaten(){
-    this.eaten=!this.eaten
+    this.isEaten=!this.isEaten
   }
 
   get getGrowFactor(){

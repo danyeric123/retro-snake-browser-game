@@ -15,7 +15,7 @@ canvas{
 #game-board {
   background-color: #CCC;
   border: black solid;
-  width: 100vmin;
+  width: 80vmin;
   height: 74vmin;
   display: grid;
 }
@@ -30,6 +30,19 @@ canvas{
 .cell{
   border: .1em solid rgba(0, 0, 0, 0.6);
   padding: .5px;
+}
+
+#score-board{
+  color: rgb(190, 50, 50);
+  border-radius: 60%;
+  padding: 15px;
+  margin-top: 0px;
+  border: solid rgba(0, 0, 0, 0.6);
+  display: none;
+}
+
+#instructions{
+  /* border:rgba(0, 0, 0, 0.6) solid; */
 }
 
 .snake {
