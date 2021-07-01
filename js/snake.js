@@ -20,10 +20,6 @@ export default class Snake{
     return this.positions[0]
   }
 
-  get isDead(){
-    return this.isDead
-  }
-
   toggleIsDead(){
     this.isDead = !this.isDead
   }
@@ -36,7 +32,7 @@ export default class Snake{
     if(this.positions.includes(newHead)){
       this.isDead =true
     }else{
-      this.positions.unshift(head);
+      this.positions.unshift(newHead);
       this.positions.pop()
       this.direction = turnDirection
     }

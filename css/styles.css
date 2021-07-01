@@ -15,7 +15,7 @@ canvas{
 #game-board {
   background-color: #CCC;
   border: black solid;
-  width: 100vmin;
+  width: 80vmin;
   height: 74vmin;
   display: grid;
 }

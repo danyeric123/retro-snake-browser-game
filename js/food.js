@@ -4,10 +4,6 @@ export default class Food{
     this.eaten= false
   }
 
-  get isEaten(){
-    return this.eaten
-  }
-
   toggleEaten(){
     this.eaten=!this.eaten
   }

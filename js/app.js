@@ -21,7 +21,7 @@ let keyPressed,
     food = new Food(),
     randomDirection,
     foodPosition,
-    snake = new Snake({x:10,y:10},2),
+    snake,
     snakeHead
 
 /*------------------------ Cached Element References ------------------------*/
@@ -39,35 +39,44 @@ function init(){
   instructions.innerText = ""
   score = 0
   randomDirection = DIR[Math.floor(Math.random()*DIR.length)]
+  console.log("before initialization")
   snake = new Snake(getRandomPosition(),randomDirection)
   board.forEach(row=>row.forEach(cell=>cell.className="cell"))
+  foodPlacement()
   //Here be game while loop
-  while(snake.isDead){
-    snake.move()
-    snakeHead = snake.getHead()
-    if(withinBounds(snakeHead)){
-      if(snakeHead.x === foodPosition.x && 
-         snakeHead.x === foodPosition.y){
-           snake.eat()
-         }
 
-    }else{
-      snake.toggleIsDead()
-    }
-    render()
-  }
+  let interval = setInterval(()=>{
+    snake.move()
+    snakeHead = snake.getHead
+    if(withinBounds(snakeHead)){
+        if(snakeHead.x === foodPosition.x && 
+          snakeHead.x === foodPosition.y){
+            snake.eat()
+            food.toggleEaten()
+          }
+        // console.log(snake.positions)
+      }else{
+        snake.toggleIsDead()
+      }
+      render()
+      if(snake.isDead){
+        console.log(snake)
+        alert("You Died!")
+        clearInterval(interval)
+      }
+    },1000/snake.speed)
   
 }
 
-let interval = setInterval(()=>{
-  if(snake.positions[0].y!=0){
-    snake.move(UP)
-    renderSnakeMove(UP)
-  }else{
-    alert("You Died!")
-    clearInterval(interval)
-  }
-},1000/snake.speed)
+// let interval = setInterval(()=>{
+//   if(snake.positions[0].y!=0){
+//     snake.move(UP)
+//     renderSnakeMove(UP)
+//   }else{
+//     alert("You Died!")
+//     clearInterval(interval)
+//   }
+// },1000/snake.speed)
 
 
 /* ------------------------- RENDER FUNCTIONS ------------------------------------- */
@@ -92,8 +101,8 @@ function renderFood(){
 }
 
 function renderSnake(){
-  let prevSnakeCells = document.getElementsByClassName("snake")
-  prevSnakeCells.className = "cell"
+  let prevSnakeCells = document.querySelectorAll(".snake")
+  prevSnakeCells.forEach(cell=>cell.className = "cell")
   for(let position of snake.positions){
     board[position.y][position.x].className = "snake"
   }
@@ -154,9 +163,9 @@ function withinBounds(position){
 }
 
 function foodPlacement(){
-  while(snake.positions.includes(foodPosition)){
+  do{
     foodPosition=getRandomPosition()
-  }
+  }while(snake.positions.includes(foodPosition))
   board[foodPosition.y][foodPosition.x].className = "food"
 }
 
