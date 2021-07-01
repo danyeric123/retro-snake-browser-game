@@ -20,6 +20,14 @@ export default class Snake{
     return this.positions[0]
   }
 
+  get isDead(){
+    return this.isDead
+  }
+
+  toggleIsDead(){
+    this.isDead = !this.isDead
+  }
+
   turn(turnDirection){
     let newHead = {
       x: this.positions[0].x + turnDirection.x, 

@@ -18,31 +18,35 @@ const DOWN_KEY = 40;
 
 let keyPressed,
     randomPosition =randomPosition(),
+    score,
+    food = new Food(),
     randomDirection,
     foodPosition,
     snake = new Snake({x:10,y:10},2)
 
 /*------------------------ Cached Element References ------------------------*/
 let gameBoardSection = document.getElementById("game-board")
-const board = createGameBoard(gameBoardSection, boardSize)
+const board = createGameBoard(gameBoardSection, boardSize),
+      instructions = document.getElementById("instructions")
 
 /*----------------------------- Event Listeners -----------------------------*/
 window.addEventListener("keydown",userInput)
 
 /*-------------------------------- Functions --------------------------------*/
 
-init()
 
 function init(){
+  instructions.innerText = ""
+  score = 0
   randomDirection = DIR[Math.floor(Math.random()*DIR.length)]
   snake = new Snake(randomPosition(),randomDirection)
   board.forEach(row=>row.forEach(cell=>cell.className="cell"))
-  while(snake.positions.includes(foodPosition)){
-    foodPosition=randomPosition()
-  }
-  board[foodPosition.y][foodPosition.x].className = "food"
-//Here be game while loop
+  //Here be game while loop
+  while(snake.isDead){
 
+  }
+  renderEndGame()
+  instructions.innerText="You Died! Press Space Bar to Play Again"
 }
 
 let interval = setInterval(()=>{
@@ -55,11 +59,40 @@ let interval = setInterval(()=>{
   }
 },1000/snake.speed)
 
-function renderSnakeMove(delta){
+function render(){
+  renderSnake()
+  renderFood()
+}
+
+function renderFood(){
+  if(food.isEaten){
+    board[foodPosition.y][foodPosition.x].className = "cell"
+    foodPlacement()
+    food.toggleEaten()
+  }
+}
+
+function renderSnake(){
+  let prevSnakeCells = document.getElementsByClassName("snake")
+  prevSnakeCells.className = "cell"
   for(let position of snake.positions){
-    board[position.y-delta.y][position.x-delta.x].className = "cell"
     board[position.y][position.x].className = "snake"
   }
+}
+
+function renderEndGame(){
+  
+}
+
+function updateScore(){
+  score = (snake.size-1)
+}
+
+function foodPlacement(){
+  while(snake.positions.includes(foodPosition)){
+    foodPosition=randomPosition()
+  }
+  board[foodPosition.y][foodPosition.x].className = "food"
 }
 
 
@@ -84,6 +117,9 @@ function userInput(e){
     case "ArrowRight":
       // Handle "turn right"
       snake.turn(RIGHT);
+      break;
+    case "Space":
+      init();
       break;
   }
 
