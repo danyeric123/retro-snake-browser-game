@@ -17,7 +17,6 @@ const DOWN_KEY = 40;
 // Should I make an array of objects that maps the keys with directions?
 
 let keyPressed,
-    randomPosition,
     score,
     food = new Food(),
     randomDirection,
@@ -127,11 +126,10 @@ function userInput(e){
 
 
 function getRandomPosition(){
-  randomPosition = {
+  return {
     x: Math.floor(Math.random()*boardSize),
     y: Math.floor(Math.random()*boardSize)
   }
-  return randomPosition
 }
 
 //Refactor the code for checking whether lastInputDir is non-zero
