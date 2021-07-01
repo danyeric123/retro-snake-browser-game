@@ -42,7 +42,7 @@ function init(){
   console.log("before initialization")
   snake = new Snake(getRandomPosition(),randomDirection)
   board.forEach(row=>row.forEach(cell=>cell.className="cell"))
-  foodPlacement()
+  renderFood()
   //Here be game while loop
 
   let interval = setInterval(()=>{
@@ -53,17 +53,15 @@ function init(){
           snakeHead.x === foodPosition.y){
             snake.eat()
             food.toggleEaten()
+            console.log("eaten")
           }
-        // console.log(snake.positions)
       }else{
         snake.toggleIsDead()
       }
-      render()
       if(snake.isDead){
-        console.log(snake)
-        alert("You Died!")
         clearInterval(interval)
       }
+      render()
     },1000/snake.speed)
   
 }
@@ -91,12 +89,12 @@ function render(){
 }
 
 function renderFood(){
+  console.log(food.isEaten)
   if(food.isEaten){
     board[foodPosition.y][foodPosition.x].className = "cell"
-    foodPlacement()
-    food.toggleEaten()
   }else if(!foodPosition){
     foodPlacement()
+    board[foodPosition.y][foodPosition.x].className = "food"
   }
 }
 
@@ -166,7 +164,6 @@ function foodPlacement(){
   do{
     foodPosition=getRandomPosition()
   }while(snake.positions.includes(foodPosition))
-  board[foodPosition.y][foodPosition.x].className = "food"
 }
 
 //Refactor the code for checking whether lastInputDir is non-zero
