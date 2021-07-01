@@ -18,6 +18,7 @@ const DOWN_KEY = 40;
 
 let keyPress,
     score,
+    scoreFactor =100,
     food,
     randomDirection,
     foodPosition,
@@ -39,7 +40,6 @@ function init(){
   instructions.innerText = ""
   score = 0
   randomDirection = DIR[Math.floor(Math.random()*DIR.length)]
-  console.log("before initialization")
   snake = new Snake(getRandomPosition(),randomDirection)
   food = new Food()
   board.forEach(row=>row.forEach(cell=>cell.className="cell"))
@@ -57,7 +57,7 @@ function init(){
 function updateState(){
   !keyPress?snake.move():snake.move(keyPress)
   snakeHead = snake.getHead
-  if(withinBounds(snakeHead)){
+  if(withinBounds(snakeHead)&&!snake.isDead){
       // console.log(`snake position: ${JSON.stringify(snake.positions)}`)
       // console.log(`food position: ${JSON.stringify(foodPosition)}`)
       // console.log((snakeHead.x == foodPosition.x) && 
@@ -79,6 +79,7 @@ function updateState(){
 
 function render(){
   if(food.isEaten) renderFood()
+  if((score/scoreFactor)!=snake.size()) renderScore()
   if(!snake.isDead){
     renderSnake()
   }else{
@@ -87,7 +88,6 @@ function render(){
 }
 
 function renderFood(){
-  console.log(food.isEaten)
   if(food.isEaten){
     board[foodPosition.y][foodPosition.x].className = "cell"
     food.toggleEaten()
@@ -104,6 +104,11 @@ function renderSnake(){
   for(let position of snake.positions){
     board[position.y][position.x].className = "snake"
   }
+}
+
+function renderScore(){
+  updateScore()
+  instructions.innerText=`Score: ${score}`
 }
 
 function renderEndGame(){
@@ -151,7 +156,7 @@ function getRandomPosition(){
 }
 
 function updateScore(){
-  score = (snake.size-1)
+  score = (snake.size()*scoreFactor)
 }
 
 function withinBounds(position){

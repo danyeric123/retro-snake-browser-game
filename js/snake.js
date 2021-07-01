@@ -9,11 +9,23 @@ export default class Snake{
   }
   move(delta=this.direction){
     let newHead = {
-      x: this.positions[0].x + delta.x, 
-      y: this.positions[0].y + delta.y
+      x: this.getHead.x + delta.x, 
+      y: this.getHead.y + delta.y
     };
-    this.positions.unshift(newHead);
-    this.positions.pop()
+    console.log(newHead)
+    console.log(this.getHead)
+    console.log(this.positions.includes(newHead))
+    console.log("\n")
+    if(this.positions.includes(newHead)){
+      this.isDead =true
+    }else{
+      this.positions.unshift(newHead);
+      this.positions.pop()
+    }
+  }
+
+  size(){
+    return this.positions.length
   }
 
   get getHead(){
@@ -24,19 +36,6 @@ export default class Snake{
     this.isDead = !this.isDead
   }
 
-  turn(turnDirection){
-    let newHead = {
-      x: this.positions[0].x + turnDirection.x, 
-      y: this.positions[0].y + turnDirection.y
-    };
-    if(this.positions.includes(newHead)){
-      this.isDead =true
-    }else{
-      this.positions.unshift(newHead);
-      this.positions.pop()
-      this.direction = turnDirection
-    }
-  }
   eat(){
     let oldTail = {...this.positions[this.positions.length-1]}
     this.positions.push(oldTail)
