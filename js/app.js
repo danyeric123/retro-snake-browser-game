@@ -17,7 +17,7 @@ const DOWN_KEY = 40;
 // Should I make an array of objects that maps the keys with directions?
 
 let keyPressed,
-    randomPosition =getRandomPosition(),
+    randomPosition,
     score,
     food = new Food(),
     randomDirection,
