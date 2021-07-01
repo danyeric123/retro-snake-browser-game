@@ -21,7 +21,8 @@ let keyPressed,
     food = new Food(),
     randomDirection,
     foodPosition,
-    snake = new Snake({x:10,y:10},2)
+    snake = new Snake({x:10,y:10},2),
+    snakeHead
 
 /*------------------------ Cached Element References ------------------------*/
 let gameBoardSection = document.getElementById("game-board")
@@ -43,7 +44,12 @@ function init(){
   //Here be game while loop
   while(snake.isDead){
     snake.move()
-    if(withinBounds(snake.positions[0])){
+    snakeHead = snake.getHead()
+    if(withinBounds(snakeHead)){
+      if(snakeHead.x === foodPosition.x && 
+         snakeHead.x === foodPosition.y){
+           snake.eat()
+         }
 
     }else{
       snake.toggleIsDead()
@@ -80,6 +86,8 @@ function renderFood(){
     board[foodPosition.y][foodPosition.x].className = "cell"
     foodPlacement()
     food.toggleEaten()
+  }else if(!foodPosition){
+    foodPlacement()
   }
 }
 

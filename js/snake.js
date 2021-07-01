@@ -8,11 +8,11 @@ export default class Snake{
     this.direction = direction
   }
   move(delta=this.direction){
-    let head = {
+    let newHead = {
       x: this.positions[0].x + delta.x, 
       y: this.positions[0].y + delta.y
     };
-    this.positions.unshift(head);
+    this.positions.unshift(newHead);
     this.positions.pop()
   }
 
