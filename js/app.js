@@ -31,14 +31,12 @@ let gameBoardSection = document.getElementById("game-board")
 const board = createGameBoard(gameBoardSection, boardSize),
       scoreEl = document.getElementById("score-board"),
       instructions = document.getElementById("instructions"),
-      fastBtn = document.getElementById("fast-btn"),
-      slowBtn = document.getElementById("slow-btn"),
+      speedBtn = document.querySelectorAll(".speed-btn"),
       speedEl = document.getElementById("speed")
 
 /*----------------------------- Event Listeners -----------------------------*/
 window.addEventListener("keydown",userInput)
-fastBtn.addEventListener("click",speedChange)
-slowBtn.addEventListener("click",speedChange)
+speedBtn.forEach(button=>button.addEventListener("click",(e)=>speedChange(e.target.innerText)))
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -73,6 +71,7 @@ function updateState(){
         (snakeHead.y == foodPosition.y)){
           snake.eat()
           food.toggleEaten()
+          speedChange()
         }
     }else{
       if(!snake.isDead) snake.toggleIsDead()
@@ -160,11 +159,11 @@ function userInput(e){
   }
 }
 
-function speedChange(e){
-  if(e.target.innerText ==="Faster"){
+function speedChange(speedIncrease="Faster"){
+  if(speedIncrease ==="Faster"){
     ++snake.speed
     speed.innerText = snake.speed
-  }else if((e.target.innerText ==="Slower")&&(snake.speed>1)){
+  }else if((speedIncrease ==="Slower")&&(snake.speed>1)){
     --snake.speed
     speed.innerText = snake.speed
   }

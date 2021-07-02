@@ -1,11 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Tourney:wght@500&display=swap');
 body {
   height: 100vh;
   width: 100vw;
   display: flex;
+  background-image: url(../imgs/background-game-img-1.jpeg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin: 0;
+  color: white;
+  margin: 10px;
+  font-family: 'Tourney', cursive;
 }
 
 canvas{
@@ -13,7 +21,8 @@ canvas{
 }
 
 #game-board {
-  background-color: #CCC;
+  background: -webkit-linear-gradient(top, #030303, #130f0f63); 
+  background: -moz-linear-gradient(top,  #030303, #130f0f63); 
   border: black solid;
   width: 80vmin;
   height: 74vmin;
@@ -25,41 +34,61 @@ canvas{
   margin-bottom: 10px;
   padding: 5px;
   font-size: 40px;
-  border: solid black;
+  border: solid white;
 }
 
 #speed-container{
   display: inline;
   flex-flow: row;
+  margin-top: 0px;
   margin-bottom: 10px;
+  font-family: 'Tourney', cursive;
+  font-size: 25px;
 }
 
 #fast-btn{
-  background-color: rgba(199, 29, 29, 0.719);
-  color: whitesmoke;
+  background: -webkit-linear-gradient(top, #DD4B39, #D14836); 
+  background: -moz-linear-gradient(top, #DD4B39, #D14836); 
+  background: -ms-linear-gradient(top, #DD4B39, #D14836); 
+  border: 1px solid #DD4B39;
+  border-radius: 20%;
+  color: white;
+  width: fit-content;
+  padding: 6px;
+  text-shadow: 0 1px 0 #C04131;
 }
 
 #slow-btn{
-  background-color: rgba(29, 60, 199, 0.562);
-  color: whitesmoke;
+  background: -webkit-linear-gradient(top, #3957dd, #3640d1); 
+  background: -moz-linear-gradient(top, #3c39dd, #D14836); 
+  background: -ms-linear-gradient(top, #DD4B39, #D14836); 
+  border: 1px solid #3957dd;
+  border-radius: 20%;
+  color: white;
+  width: fit-content;
+  padding: 6px;
+  text-shadow: 0 1px 0 #3957dd;
 }
 
 .cell{
-  border: .1em solid rgba(0, 0, 0, 0.6);
+  border: .1em solid rgba(187, 169, 169, 0.658);
   padding: .5px;
 }
 
 #score-board{
-  color: rgb(190, 50, 50);
+  color: rgb(252, 248, 248);
   border-radius: 60%;
   padding: 15px;
   margin-top: 0px;
-  border: solid rgba(0, 0, 0, 0.6);
+  margin-bottom: 3px;
+  border: solid rgba(255, 255, 255, 0.973);
   display: none;
 }
 
 #instructions{
-  /* border:rgba(0, 0, 0, 0.6) solid; */
+  font-family: 'Tourney', cursive;
+  font-size: 30px;
+  margin-top: 0px;
 }
 
 .snake {
