@@ -13,9 +13,7 @@ export default class Snake{
       y: this.getHead.y + delta.y
     };
     if(this.touchSelf(newHead)){
-      console.log("Snake dead")
       this.isDead =true
-      console.log(`isDead is set to ${this.isDead}`)
     }else{
       this.positions.unshift(newHead);
       this.positions.pop()
