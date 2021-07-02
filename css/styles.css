@@ -27,6 +27,22 @@ canvas{
   border: solid black;
 }
 
+#speed-container{
+  display: inline;
+  flex-flow: row;
+  margin-bottom: 10px;
+}
+
+#fast-btn{
+  background-color: rgba(199, 29, 29, 0.719);
+  color: whitesmoke;
+}
+
+#slow-btn{
+  background-color: rgba(29, 60, 199, 0.562);
+  color: whitesmoke;
+}
+
 .cell{
   border: .1em solid rgba(0, 0, 0, 0.6);
   padding: .5px;

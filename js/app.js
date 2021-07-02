@@ -23,17 +23,23 @@ let keyPress,
     randomDirection,
     foodPosition,
     snake,
-    gamePlay,
+    gamePlayInterval,
     snakeHead
 
 /*------------------------ Cached Element References ------------------------*/
 let gameBoardSection = document.getElementById("game-board")
 const board = createGameBoard(gameBoardSection, boardSize),
       scoreEl = document.getElementById("score-board"),
-      instructions = document.getElementById("instructions")
+      instructions = document.getElementById("instructions"),
+      fastBtn = document.getElementById("fast-btn"),
+      slowBtn = document.getElementById("slow-btn"),
+      speedEl = document.getElementById("speed")
 
 /*----------------------------- Event Listeners -----------------------------*/
 window.addEventListener("keydown",userInput)
+fastBtn.addEventListener("click",speedChange)
+slowBtn.addEventListener("click",speedChange)
+
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -48,10 +54,13 @@ function init(){
   food = new Food()
   board.forEach(row=>row.forEach(cell=>cell.className="cell"))
   renderFood()
-  //Here be game while loop
-  gamePlay = setInterval(()=>{
+  gamePlay()
+}
+
+//Here be game while loop
+function gamePlay(){
+  gamePlayInterval = setInterval(()=>{
     updateState()
-    console.log(`Game claims isDead is ${snake.isDead}`)
     if(snake.isDead){
       clearInterval(gamePlay)
     }
@@ -67,7 +76,6 @@ function updateState(){
         (snakeHead.y == foodPosition.y)){
           snake.eat()
           food.toggleEaten()
-          console.log("eaten")
         }
     }else{
       if(!snake.isDead) snake.toggleIsDead()
@@ -144,6 +152,18 @@ function userInput(e){
     case "KeyQ":
       clearInterval(gamePlay)
   }
+}
+
+function speedChange(e){
+  if(e.target.innerText ==="Faster"){
+    ++snake.speed
+    speed.innerText = snake.speed
+  }else if(e.target.innerText ==="Slower"){
+    --snake.speed
+    speed.innerText = snake.speed
+  }
+  clearInterval(gamePlayInterval)
+  gamePlay()
 }
 
 /*------------------------- HELPER FUNCTIONS  ------------------------------------------------*/
