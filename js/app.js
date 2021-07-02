@@ -10,12 +10,6 @@ const UP = { x: 0, y:-1 },
 
 const boardSize = 32
 
-const LEFT_KEY = 37;
-const RIGHT_KEY = 39;
-const UP_KEY = 38;
-const DOWN_KEY = 40;
-// Should I make an array of objects that maps the keys with directions?
-
 let keyPress,
     score,
     scoreFactor =100,
@@ -32,7 +26,10 @@ const board = createGameBoard(gameBoardSection, boardSize),
       scoreEl = document.getElementById("score-board"),
       instructions = document.getElementById("instructions"),
       speedBtn = document.querySelectorAll(".speed-btn"),
-      speedEl = document.getElementById("speed")
+      speedEl = document.getElementById("speed"),
+      scoreNoise = new Audio("../audio/points-added.wav"),
+      deathSound = new Audio("../audio/video-game-blood-pop.wav")
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 window.addEventListener("keydown",userInput)
@@ -57,6 +54,7 @@ function gamePlay(){
     updateState()
     console.log(snake.speed)
     if(snake.isDead){
+      deathSound.play()
       clearInterval(gamePlayInterval)
     }
     render()
@@ -71,6 +69,7 @@ function updateState(){
         (snakeHead.y == foodPosition.y)){
           snake.eat()
           food.toggleEaten()
+          // sound for eating would be here
           speedChange()
         }
     }else{
@@ -120,6 +119,7 @@ function renderSnake(){
 
 function renderScore(){
   updateScore()
+  scoreNoise.play()
   scoreEl.innerText=`Score: ${score}`
 }
 
