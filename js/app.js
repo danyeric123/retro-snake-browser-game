@@ -45,15 +45,11 @@ slowBtn.addEventListener("click",speedChange)
 
 
 function init(){
-  instructions.innerText = "Press Q to quit"
   score = 0
-  scoreEl.innerText=`Score: ${score}`
-  scoreEl.style.display = "block"
   randomDirection = DIR[Math.floor(Math.random()*DIR.length)]
   snake = new Snake(getRandomPosition(),randomDirection)
   food = new Food()
-  board.forEach(row=>row.forEach(cell=>cell.className="cell"))
-  renderFood()
+  renderNewBoard()
   gamePlay()
 }
 
@@ -61,8 +57,9 @@ function init(){
 function gamePlay(){
   gamePlayInterval = setInterval(()=>{
     updateState()
+    console.log(snake.speed)
     if(snake.isDead){
-      clearInterval(gamePlay)
+      clearInterval(gamePlayInterval)
     }
     render()
   },500/snake.speed)
@@ -92,6 +89,15 @@ function render(){
   }else{
     renderEndGame()
   }
+}
+
+function renderNewBoard(){
+  instructions.innerText = "Press Q to quit"
+  scoreEl.innerText=`Score: ${score}`
+  speedEl.innerText = snake.speed
+  scoreEl.style.display = "block"
+  board.forEach(row=>row.forEach(cell=>cell.className="cell"))
+  renderFood()
 }
 
 function renderFood(){
@@ -150,7 +156,7 @@ function userInput(e){
       init();
       break;
     case "KeyQ":
-      clearInterval(gamePlay)
+      clearInterval(gamePlayInterval)
   }
 }
 
@@ -158,7 +164,7 @@ function speedChange(e){
   if(e.target.innerText ==="Faster"){
     ++snake.speed
     speed.innerText = snake.speed
-  }else if(e.target.innerText ==="Slower"){
+  }else if((e.target.innerText ==="Slower")&&(snake.speed>1)){
     --snake.speed
     speed.innerText = snake.speed
   }
