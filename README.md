@@ -1,3 +1,16 @@
+# Description:
+Snake game for the browser using vanilla JS and basic HTML and CSS. There was a heavy emphasis on OOP when creating this small app. 
+
+The game mechanics and rules are explained in detail in [UPenn's 2008 assignment on the topic](https://www.cis.upenn.edu/~matuszek/cit591-2008/Assignments/11-snake.html)
+
+### Technologies and Languages Used:
+- HTML
+- CSS
+- Javascript
+
+# Motivation:
+I grew up on the [Snake Game](https://en.wikipedia.org/wiki/Snake_(video_game_genre)) on my small Nokia phone. As such, it was nice to come back and make something I played so much as a kid.
+
 # Game Link
 [Click here to play game](https://danyeric123.github.io/retro-snake-browser-game/)
 
@@ -54,5 +67,7 @@
    7. Render points in score based on food eaten
 11. Directions will be a 2D array of up-down, right-left
 
-#EXTENSIONS:
-1. Being able to control the speed of the snake
+# EXTENSIONS:
+1. ~~Being able to control the speed of the snake
+2. ~~Snake speed increases as he eats
+3. ~~Audio related to losing and points added
