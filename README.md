@@ -68,6 +68,6 @@ I grew up on the [Snake Game](https://en.wikipedia.org/wiki/Snake_(video_game_ge
 11. Directions will be a 2D array of up-down, right-left
 
 # EXTENSIONS:
-1. ~~Being able to control the speed of the snake
-2. ~~Snake speed increases as he eats
-3. ~~Audio related to losing and points added
+1. ~~Being able to control the speed of the snake~~
+2. ~~Snake speed increases as he eats~~
+3. ~~Audio related to losing and points added~~
