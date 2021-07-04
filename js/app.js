@@ -52,7 +52,6 @@ function init(){
 function gamePlay(){
   gamePlayInterval = setInterval(()=>{
     updateState()
-    console.log(snake.speed)
     if(snake.isDead){
       deathSound.play()
       clearInterval(gamePlayInterval)
@@ -174,6 +173,8 @@ function speedChange(speedIncrease="Faster"){
 /*------------------------- HELPER FUNCTIONS  ------------------------------------------------*/
 
 
+// Functions to help with gameplay
+
 function getRandomPosition(){
   return {
     x: Math.floor(Math.random()*boardSize),
@@ -196,9 +197,7 @@ function foodPlacement(){
   }while(snake.positions.includes(foodPosition))
 }
 
-//Refactor the code for checking whether lastInputDir is non-zero
-
-
+// Functions that help to create the board
 
 function createGameBoard(gameBoardSection,size){
   let i =0
