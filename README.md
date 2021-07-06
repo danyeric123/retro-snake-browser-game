@@ -14,6 +14,9 @@ I grew up on the [Snake Game](https://en.wikipedia.org/wiki/Snake_(video_game_ge
 # Screenshot of Game:
 ![Retro Snake Game Screenshot](http://imgur.com/a/zxBbLUV)
 
+# Attributions:
+- Sounds taken from [Mixkit](https://mixkit.co/free-sound-effects/game)
+
 # Game Link
 [Click here to play game](http://www.retro-snake-game.surge.sh)
 
