@@ -11,11 +11,14 @@ The game mechanics and rules are explained in detail in [UPenn's 2008 assignment
 # Motivation:
 I grew up on the [Snake Game](https://en.wikipedia.org/wiki/Snake_(video_game_genre)) on my small Nokia phone. As such, it was nice to come back and make something I played so much as a kid.
 
+# Screenshot of Game:
+![Retro Snake Game Screenshot](https://imgur.com/a/zxBbLUV)
+
 # Game Link
 [Click here to play game](http://www.retro-snake-game.surge.sh)
 
 
-# PSEUDO-CODE:
+# Pseudo-code:
 1. Snake will be an object/class with the following states:
    1. Length of snake
    2. Snake speed variable?
@@ -67,7 +70,7 @@ I grew up on the [Snake Game](https://en.wikipedia.org/wiki/Snake_(video_game_ge
    7. Render points in score based on food eaten
 11. Directions will be a 2D array of up-down, right-left
 
-# EXTENSIONS:
+# Sketch Goals:
 1. ~~Being able to control the speed of the snake~~
 2. ~~Snake speed increases as he eats~~
 3. ~~Audio related to losing and points added~~
