@@ -12,7 +12,7 @@ The game mechanics and rules are explained in detail in [UPenn's 2008 assignment
 I grew up on the [Snake Game](https://en.wikipedia.org/wiki/Snake_(video_game_genre)) on my small Nokia phone. As such, it was nice to come back and make something I played so much as a kid.
 
 # Game Link
-[Click here to play game](https://danyeric123.github.io/retro-snake-browser-game/)
+[Click here to play game](retro-snake-game.surge.sh)
 
 
 # PSEUDO-CODE:
