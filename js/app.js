@@ -30,8 +30,6 @@ const board = createGameBoard(gameBoardSection, boardSize),
       scoreNoise = new Audio("audio/points-added.wav"),
       deathSound = new Audio("audio/video-game-blood-pop.wav")
 
-console.log(scoreNoise)
-console.log(deathSound)
 
 /*----------------------------- Event Listeners -----------------------------*/
 window.addEventListener("keydown",userInput)
