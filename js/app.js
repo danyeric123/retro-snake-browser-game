@@ -2,11 +2,11 @@ import Snake from './snake.js';
 import Food from './food.js';
 
 /*-------------------------------- Constants / Variables --------------------------------*/
-const UP = { x: 0, y:-1 },
-      DOWN = { x: 0, y: 1 },
-      RIGHT  = { x: 1, y: 0 },
-      LEFT  = { x:-1, y: 0 },
-      DIR = [UP,DOWN,RIGHT,LEFT]
+const up = { x: 0, y:-1 },
+      down = { x: 0, y: 1 },
+      right  = { x: 1, y: 0 },
+      left  = { x:-1, y: 0 },
+      dir = [up,down,right,left]
 
 const boardSize = 32
 
@@ -30,11 +30,9 @@ const board = createGameBoard(gameBoardSection, boardSize),
       scoreNoise = new Audio("audio/points-added.wav"),
       deathSound = new Audio("audio/video-game-blood-pop.wav")
 
-console.log(scoreNoise)
-console.log(deathSound)
 
 /*----------------------------- Event Listeners -----------------------------*/
-window.addEventListener("keydown",userInput)
+window.addEventListener("keydown",getUserInput)
 speedBtn.forEach(button=>button.addEventListener("click",(e)=>speedChange(e.target.innerText)))
 
 
@@ -43,7 +41,7 @@ speedBtn.forEach(button=>button.addEventListener("click",(e)=>speedChange(e.targ
 
 function init(){
   score = 0
-  randomDirection = DIR[Math.floor(Math.random()*DIR.length)]
+  randomDirection = dir[Math.floor(Math.random()*dir.length)]
   snake = new Snake(getRandomPosition(),randomDirection)
   food = new Food()
   renderNewBoard()
@@ -65,7 +63,7 @@ function gamePlay(){
 function updateState(){
   !keyPress?snake.move():snake.move(keyPress)
   snakeHead = snake.getHead
-  if(withinBounds(snakeHead)&&!snake.isDead){
+  if(checkBounds(snakeHead)&&!snake.isDead){
       if((snakeHead.x == foodPosition.x) && 
         (snakeHead.y == foodPosition.y)){
           snake.eat()
@@ -104,7 +102,7 @@ function renderFood(){
     board[foodPosition.y][foodPosition.x].className = "cell"
     food.toggleEaten()
   }
-  foodPlacement()
+  placeFood()
   board[foodPosition.y][foodPosition.x].className = "food"
 
     //Think of refactoring the food position into Food class
@@ -130,27 +128,27 @@ function renderEndGame(){
 
 /* ------------------ EVENT LISTENER FUNCTIONS ----------------------------------- */
 
-function userInput(e){
+function getUserInput(e){
   switch(e.code) {
     case "KeyS":
     case "ArrowDown":
       // Handle "down"
-      keyPress = DOWN
+      keyPress = down
       break;
     case "KeyW":
     case "ArrowUp":
       // Handle "up"
-      keyPress = UP;
+      keyPress = up;
       break;
     case "KeyA":
     case "ArrowLeft":
       // Handle "turn left"
-      keyPress = LEFT;
+      keyPress = left;
       break;
     case "KeyD":
     case "ArrowRight":
       // Handle "turn right"
-      keyPress = RIGHT;
+      keyPress = right;
       break;
     case "Space":
       init();
@@ -188,12 +186,12 @@ function updateScore(){
   score = ((snake.size()-1)*scoreFactor)
 }
 
-function withinBounds(position){
+function checkBounds(position){
   return (position.y>-1 && position.y < boardSize)&&
          (position.x>-1 && position.x < boardSize)
 }
 
-function foodPlacement(){
+function placeFood(){
   do{
     foodPosition=getRandomPosition()
   }while(snake.positions.includes(foodPosition))
@@ -210,7 +208,7 @@ function createGameBoard(gameBoardSection,size){
     gameBoardSection.appendChild(newCell)
     i++
   }
-  return twoDimensional([...document.querySelectorAll(".cell")],size)
+  return createTwoDimensional([...document.querySelectorAll(".cell")],size)
 }
 
 function createDivCell(){
@@ -219,7 +217,7 @@ function createDivCell(){
   return newDiv
 }
 
-function twoDimensional(arr, size){
+function createTwoDimensional(arr, size){
   let result = []; 
   for(var i=0;i < arr.length;i = i+size) result.push(arr.slice(i,i+size));
   return result;
