@@ -27,9 +27,11 @@ const board = createGameBoard(gameBoardSection, boardSize),
       instructions = document.getElementById("instructions"),
       speedBtn = document.querySelectorAll(".speed-btn"),
       speedEl = document.getElementById("speed"),
-      scoreNoise = new Audio("../audio/points-added.wav"),
-      deathSound = new Audio("../audio/video-game-blood-pop.wav")
+      scoreNoise = new Audio("audio/points-added.wav"),
+      deathSound = new Audio("audio/video-game-blood-pop.wav")
 
+console.log(scoreNoise)
+console.log(deathSound)
 
 /*----------------------------- Event Listeners -----------------------------*/
 window.addEventListener("keydown",userInput)
