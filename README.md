@@ -17,7 +17,8 @@ I grew up on the [Snake Game](https://en.wikipedia.org/wiki/Snake_(video_game_ge
 # Attributions:
 - Sounds taken from [Mixkit](https://mixkit.co/free-sound-effects/game)
 
-# Game Link
+# Getting Started
+Use the up, down, right, left buttons or W, S, D, A keys to move around.
 [Click here to play game](http://www.retro-snake-game.surge.sh)
 
 
