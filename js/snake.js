@@ -47,8 +47,3 @@ export default class Snake{
 
   }
 }
-
-// addSegments() {
-//   for (let i = 0; i < newSegments; i++) {
-//     snakeBody.push({ ...snakeBody[snakeBody.length - 1] })
-//   }
