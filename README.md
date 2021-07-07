@@ -16,6 +16,7 @@ I grew up on the [Snake Game](https://en.wikipedia.org/wiki/Snake_(video_game_ge
 
 # Attributions:
 - Sounds taken from [Mixkit](https://mixkit.co/free-sound-effects/game)
+- Background taken from [Shutterstock](https://www.shutterstock.com/image-vector/cosmic-shining-abstract-background-1049450375)
 
 # Getting Started
 Use the up, down, right, left buttons or W, S, D, A keys to move around.
