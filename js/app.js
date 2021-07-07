@@ -80,7 +80,7 @@ function updateState(){
 
 function render(){
   if(food.isEaten) renderFood()
-  if((score/scoreFactor)!=(snake.size()-1)) renderScore()
+  if((score/scoreFactor)!=(snake.getSize()-1)) renderScore()
   if(!snake.isDead){
     renderSnake()
   }else{
@@ -183,7 +183,7 @@ function getRandomPosition(){
 }
 
 function updateScore(){
-  score = ((snake.size()-1)*scoreFactor)
+  score = ((snake.getSize()-1)*scoreFactor)
 }
 
 function checkBounds(position){

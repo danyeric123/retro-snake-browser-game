@@ -24,7 +24,7 @@ export default class Snake{
       (position.y === newPosition.y))
   }
 
-  size(){
+  getSize(){
     return this.positions.length
   }
 
