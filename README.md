@@ -19,7 +19,7 @@ I grew up on the [Snake Game](https://en.wikipedia.org/wiki/Snake_(video_game_ge
 
 # Getting Started
 Use the up, down, right, left buttons or W, S, D, A keys to move around.
-[Click here to play game](http://www.retro-snake-game.surge.sh)
+[Click here to play game](https://danyeric123.github.io/retro-snake-browser-game/)
 
 
 # Pseudo-code:
