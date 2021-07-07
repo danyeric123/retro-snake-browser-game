@@ -1,5 +1,3 @@
-import Food from './food.js';
-
 export default class Snake{
   constructor(startPosition, direction, speed=1){
     this.positions = [{x:startPosition.x,y:startPosition.y}]
