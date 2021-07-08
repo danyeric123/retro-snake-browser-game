@@ -9,7 +9,7 @@ The game mechanics and rules are explained in detail in [UPenn's 2008 assignment
 - Javascript
 
 # Motivation:
-I grew up on the [Snake Game](https://en.wikipedia.org/wiki/Snake_(video_game_genre)) on my small Nokia phone. As such, it was nice to come back and make something I played so much as a kid.
+I grew up on the [Snake Game](https://en.wikipedia.org/wiki/Snake_(video_game_genre)) on my small Nokia phone. As such, it was nice to come back and make something I played so much as a kid. Also I created a Python version of this game that can be found [here](https://github.com/danyeric123/Retro-Snake-Game)
 
 # Screenshot of Game:
 ![Retro Snake Game Screenshot](imgs/retro-snake-game.png)
