@@ -75,7 +75,7 @@ Use the up, down, right, left buttons or W, S, D, A keys to move around.
    7. Render points in score based on food eaten
 11. Directions will be a 2D array of up-down, right-left
 
-# Sketch Goals:
+# Stretch Goals:
 1. ~~Being able to control the speed of the snake~~
 2. ~~Snake speed increases as he eats~~
 3. ~~Audio related to losing and points added~~
